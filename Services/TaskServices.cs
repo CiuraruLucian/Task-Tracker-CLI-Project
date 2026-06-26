@@ -92,17 +92,34 @@ namespace TaskTrackerCLIProject.Services
                 
               
             }
-            catch (InvalidOperationException ex)
-            {
-                throw new Exception("Error: There are no elements in the list", ex);
-            }
             catch (Exception ex)
             {
                 throw new Exception("Error: An error has occured, the list wasn't saved", ex);
             }
         }
 
-        public void DeleteTask() { }
+        public TaskItem DeleteTask(int id) 
+        { 
+            List<TaskItem> tasks = _storage.LoadTasks();
+
+            try
+            {
+                TaskItem? deletedTask = tasks.FirstOrDefault(task => task.Id == id);
+                if (deletedTask == null)
+                {
+                    throw new KeyNotFoundException($"The task with the id: {id} was not found.");
+                }
+                tasks.Remove(deletedTask);
+
+                _storage.SaveTasks(tasks);
+                return deletedTask;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: An error has occured, the list wasn't saved", ex);
+            }
+
+        }
 
         public void MarkStatus() { }
 

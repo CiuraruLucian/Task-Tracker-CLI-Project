@@ -58,6 +58,15 @@ namespace TaskTrackerCLIProject.CLI
                     return;
                 }
             }
+            else if (args[0] == "delete")
+            {
+                if(args.Length == 2)
+                {
+                    int id = int.Parse(args[1]);
+                    Console.WriteLine($"Sucessfully deleted the task with id: {id}");
+                    var result = _services.DeleteTask(id);
+                }
+            }
         }
     }
 }
