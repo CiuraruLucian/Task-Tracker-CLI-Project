@@ -40,6 +40,23 @@ namespace TaskTrackerCLIProject.CLI
                 }
 
             }
+            else if (args[0] == "update")
+            {
+                if(args.Length == 3)
+                {
+                    int id = int.Parse(args[1]);
+                    Console.WriteLine($"Parsed id: {id}");
+                    var result = _services.UpdateTask(id, args[2]);
+                    Console.WriteLine($"Id: {result.Id} ");
+                    Console.WriteLine($"Description: {result.Description}");
+                    Console.WriteLine($"Status: {result.Status}");
+                }
+                else
+                {
+                    Console.WriteLine("Error! You need to add a description");
+                    return;
+                }
+            }
         }
     }
 }

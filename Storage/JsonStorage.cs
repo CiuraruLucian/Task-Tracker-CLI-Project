@@ -48,7 +48,6 @@ namespace TaskTrackerCLIProject.Storage
             var jsonOptions = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             };
 
             string json = JsonSerializer.Serialize(tasks, jsonOptions);

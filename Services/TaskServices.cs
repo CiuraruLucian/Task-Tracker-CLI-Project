@@ -70,7 +70,39 @@ namespace TaskTrackerCLIProject.Services
             }
         
 
-        public void UpdateTask() { }
+        public TaskItem UpdateTask(int id, string description) 
+        {
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                throw new ArgumentException("Error: The description cannot be empty.");
+            }
+            List<TaskItem> tasks = _storage.LoadTasks();
+            try
+            {
+                    TaskItem? updatedTask = tasks.FirstOrDefault(task => task.Id == id);
+                    if(updatedTask == null)
+                    {
+                        throw new KeyNotFoundException($"The task with the id: {id} was not found.");
+                    }
+                    updatedTask.Description = description;
+                    updatedTask.UpdatedAt = DateTime.Now;
+        
+                    _storage.SaveTasks(tasks);
+
+                    return updatedTask;
+
+                
+              
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new Exception("Error: There are no elements in the list", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: An error has occured, the list wasn't saved", ex);
+            }
+        }
 
         public void DeleteTask() { }
 

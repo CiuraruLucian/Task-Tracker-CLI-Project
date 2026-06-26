@@ -2,7 +2,7 @@
   "profiles": {
     "TaskTrackerCLIProject": {
       "commandName": "Project",
-      "commandLineArgs": "add \"Buy groceries\""
+      "commandLineArgs": "update 1 \"Buy groceries and perfume.\""
     }
   }
 }
