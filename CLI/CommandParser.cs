@@ -29,6 +29,7 @@ namespace TaskTrackerCLIProject.CLI
                 if (args.Length == 2)
                 {
                     var result = _services.AddTask(args[1]);
+                    Console.WriteLine($"Sucessfully added the task with id: {result.Id}");
                     Console.WriteLine($"Id: {result.Id} ");
                     Console.WriteLine($"Description: {result.Description}");
                     Console.WriteLine($"Status: {result.Status}");
@@ -45,7 +46,7 @@ namespace TaskTrackerCLIProject.CLI
                 if(args.Length == 3)
                 {
                     int id = int.Parse(args[1]);
-                    Console.WriteLine($"Parsed id: {id}");
+                    Console.WriteLine($"Sucessfully updated the task with id: {id}");
                     var result = _services.UpdateTask(id, args[2]);
                     Console.WriteLine($"Id: {result.Id} ");
                     Console.WriteLine($"Description: {result.Description}");

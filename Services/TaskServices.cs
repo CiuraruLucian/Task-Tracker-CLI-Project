@@ -68,8 +68,6 @@ namespace TaskTrackerCLIProject.Services
                     throw new Exception("Error: An error has occured, the list wasn't saved", ex);
                 }
             }
-        
-
         public TaskItem UpdateTask(int id, string description) 
         {
             if (string.IsNullOrWhiteSpace(description))
