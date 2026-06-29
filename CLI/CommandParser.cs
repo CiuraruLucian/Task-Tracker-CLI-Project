@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TaskTrackerCLIProject.Models;
 using TaskTrackerCLIProject.Services;
 using TaskTrackerCLIProject.Storage;
 
@@ -84,6 +85,18 @@ namespace TaskTrackerCLIProject.CLI
                     int id = int.Parse(args[1]);
                     _services.MarkStatus("done", id);
                     Console.WriteLine($"Sucessfully updated the status for the task with id: {id}"); 
+                }
+            }
+            else if (args[0] == "list")
+            {
+                var results = _services.ListTasks();
+                foreach(TaskItem result in results)
+                {
+                    Console.WriteLine($"Id: {result.Id} ");
+                    Console.WriteLine($"Description: {result.Description}");
+                    Console.WriteLine($"Status: {result.Status}");
+                    Console.WriteLine($"Created at: {result.CreatedAt}");
+                    Console.WriteLine($"Updated at: {result.UpdatedAt}");
                 }
             }
         }

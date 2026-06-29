@@ -153,7 +153,11 @@ namespace TaskTrackerCLIProject.Services
                 }
         }
 
-        public void ListTasks() { }
+        public List<TaskItem> ListTasks() 
+        {
+            List<TaskItem> tasks = _storage.LoadTasks();
+            return tasks;
+        }
 
     }
 }
