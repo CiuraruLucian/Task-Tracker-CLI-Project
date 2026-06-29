@@ -89,14 +89,28 @@ namespace TaskTrackerCLIProject.CLI
             }
             else if (args[0] == "list")
             {
-                var results = _services.ListTasks();
-                foreach(TaskItem result in results)
+                if(args.Length == 1)
                 {
-                    Console.WriteLine($"Id: {result.Id} ");
-                    Console.WriteLine($"Description: {result.Description}");
-                    Console.WriteLine($"Status: {result.Status}");
-                    Console.WriteLine($"Created at: {result.CreatedAt}");
-                    Console.WriteLine($"Updated at: {result.UpdatedAt}");
+                    var results = _services.ListTasks();
+                    foreach (TaskItem result in results)
+                    {
+                        Console.WriteLine($"Id: {result.Id} ");
+                        Console.WriteLine($"Description: {result.Description}");
+                        Console.WriteLine($"Status: {result.Status}");
+                        Console.WriteLine($"Created at: {result.CreatedAt}");
+                        Console.WriteLine($"Updated at: {result.UpdatedAt}");
+                    }
+                }else if(args.Length == 2)
+                {
+                    var results = _services.ListTasks(args[1]);
+                    foreach (TaskItem result in results)
+                    {
+                        Console.WriteLine($"Id: {result.Id} ");
+                        Console.WriteLine($"Description: {result.Description}");
+                        Console.WriteLine($"Status: {result.Status}");
+                        Console.WriteLine($"Created at: {result.CreatedAt}");
+                        Console.WriteLine($"Updated at: {result.UpdatedAt}");
+                    }
                 }
             }
         }

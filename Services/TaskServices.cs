@@ -153,10 +153,26 @@ namespace TaskTrackerCLIProject.Services
                 }
         }
 
-        public List<TaskItem> ListTasks() 
+        public List<TaskItem> ListTasks(string? status = null) 
         {
+            string[] validStatuses = { "todo", "in-progress", "done" };
             List<TaskItem> tasks = _storage.LoadTasks();
-            return tasks;
+            if (status == null)
+            {
+                return tasks;
+            }
+            else 
+            {
+                var hasFilteredResults = validStatuses.Contains(status);
+                {
+                    if (!hasFilteredResults)
+                    {
+                        throw new ArgumentException("Error: You entered an invalid status.");
+                    }
+                    var filteredResults = tasks.Where(task => task.Status == status);
+                    return filteredResults.ToList();
+                }
+            }
         }
 
     }
