@@ -67,6 +67,25 @@ namespace TaskTrackerCLIProject.CLI
                     var result = _services.DeleteTask(id);
                 }
             }
+            else if (args[0] == "mark-in-progress")
+            {
+                if(args.Length == 2)
+                {
+                    int id = int.Parse(args[1]);
+                    _services.MarkStatus("in-progress", id);
+                    Console.WriteLine($"Sucessfully updated the status for the task with id: {id}");
+                    
+                }
+            }
+            else if (args[0] == "mark-done")
+            {
+                if(args.Length == 2)
+                {
+                    int id = int.Parse(args[1]);
+                    _services.MarkStatus("done", id);
+                    Console.WriteLine($"Sucessfully updated the status for the task with id: {id}"); 
+                }
+            }
         }
     }
 }

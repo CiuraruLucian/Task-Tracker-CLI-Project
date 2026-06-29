@@ -121,7 +121,37 @@ namespace TaskTrackerCLIProject.Services
 
         }
 
-        public void MarkStatus() { }
+        public TaskItem MarkStatus(string status,int id) 
+        {
+            string[] validStatuses = { "todo", "in-progress", "done" };
+            if (!validStatuses.Contains(status))
+            {
+                throw new ArgumentException("Error: You entered an invalid status.");
+            }
+                List<TaskItem> tasks = _storage.LoadTasks();
+                try
+                {
+                    TaskItem? markedTask = tasks.FirstOrDefault(task => task.Id == id);
+                    if(markedTask == null)
+                    {
+                        throw new KeyNotFoundException($"The task with the id: {id} was not found.");
+                    }
+                    markedTask.Status = status;
+                    markedTask.UpdatedAt = DateTime.Now;
+
+                    _storage.SaveTasks(tasks);
+
+                    return markedTask;
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    throw new Exception("Error: The task wasn't founded.", ex);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error: An error has occured, the list wasn't saved.", ex);
+                }
+        }
 
         public void ListTasks() { }
 

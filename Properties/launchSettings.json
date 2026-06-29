@@ -2,7 +2,7 @@
   "profiles": {
     "TaskTrackerCLIProject": {
       "commandName": "Project",
-      "commandLineArgs": "delete 2"
+      "commandLineArgs": "mark-done 1\r\n"
     }
   }
 }
