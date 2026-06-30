@@ -46,12 +46,18 @@ namespace TaskTrackerCLIProject.CLI
             {
                 if(args.Length == 3)
                 {
-                    int id = int.Parse(args[1]);
-                    Console.WriteLine($"Sucessfully updated the task with id: {id}");
-                    var result = _services.UpdateTask(id, args[2]);
-                    Console.WriteLine($"Id: {result.Id} ");
-                    Console.WriteLine($"Description: {result.Description}");
-                    Console.WriteLine($"Status: {result.Status}");
+                    if(int.TryParse(args[1], out int id))
+                    {
+                        var result = _services.UpdateTask(id, args[2]);
+                        Console.WriteLine($"Sucessfully updated the task with id: {id}");
+                        Console.WriteLine($"Id: {result.Id} ");
+                        Console.WriteLine($"Description: {result.Description}");
+                        Console.WriteLine($"Status: {result.Status}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Id must be a valid number.");
+                    }
                 }
                 else
                 {
@@ -63,18 +69,36 @@ namespace TaskTrackerCLIProject.CLI
             {
                 if(args.Length == 2)
                 {
-                    int id = int.Parse(args[1]);
-                    Console.WriteLine($"Sucessfully deleted the task with id: {id}");
-                    var result = _services.DeleteTask(id);
+                    if (int.TryParse(args[1], out int id))
+                    {
+                        var result = _services.UpdateTask(id, args[2]);
+                        Console.WriteLine($"Sucessfully deleted the task with id: {id}");
+                        Console.WriteLine($"Id: {result.Id} ");
+                        Console.WriteLine($"Description: {result.Description}");
+                        Console.WriteLine($"Status: {result.Status}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Id must be a valid number.");
+                    }
                 }
             }
             else if (args[0] == "mark-in-progress")
             {
                 if(args.Length == 2)
                 {
-                    int id = int.Parse(args[1]);
-                    _services.MarkStatus("in-progress", id);
-                    Console.WriteLine($"Sucessfully updated the status for the task with id: {id}");
+                    if (int.TryParse(args[1], out int id))
+                    {
+                        var result = _services.UpdateTask(id, args[2]);
+                        Console.WriteLine($"Sucessfully updated the status for the task with id: {id}");
+                        Console.WriteLine($"Id: {result.Id} ");
+                        Console.WriteLine($"Description: {result.Description}");
+                        Console.WriteLine($"Status: {result.Status}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Id must be a valid number.");
+                    }
                     
                 }
             }
@@ -82,9 +106,18 @@ namespace TaskTrackerCLIProject.CLI
             {
                 if(args.Length == 2)
                 {
-                    int id = int.Parse(args[1]);
-                    _services.MarkStatus("done", id);
-                    Console.WriteLine($"Sucessfully updated the status for the task with id: {id}"); 
+                    if (int.TryParse(args[1], out int id))
+                    {
+                        var result = _services.UpdateTask(id, args[2]);
+                        Console.WriteLine($"Sucessfully updated the status for the task with id: {id}");
+                        Console.WriteLine($"Id: {result.Id} ");
+                        Console.WriteLine($"Description: {result.Description}");
+                        Console.WriteLine($"Status: {result.Status}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: Id must be a valid number.");
+                    }
                 }
             }
             else if (args[0] == "list")
@@ -112,6 +145,10 @@ namespace TaskTrackerCLIProject.CLI
                         Console.WriteLine($"Updated at: {result.UpdatedAt}");
                     }
                 }
+            }
+            else
+            {
+                Console.WriteLine("Unknown command. Usage: task-cli <command> [arguments]");
             }
         }
     }

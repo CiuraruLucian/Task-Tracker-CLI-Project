@@ -2,7 +2,7 @@
   "profiles": {
     "TaskTrackerCLIProject": {
       "commandName": "Project",
-      "commandLineArgs": "list todo\r\n"
+      "commandLineArgs": "update 999 \"test\""
     }
   }
 }

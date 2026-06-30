@@ -13,7 +13,15 @@ namespace TaskTrackerCLIProject
             Console.WriteLine($"Working directory: {Directory.GetCurrentDirectory()}");
             TaskServices ts = new TaskServices(js);
             CommandParser cParser = new CommandParser(ts);
-            cParser.Parser(args);
+            try
+            {
+                cParser.Parser(args);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            
         }
     }
 }
