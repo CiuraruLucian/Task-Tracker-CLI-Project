@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="TaskTrackerCLIProject.Tests\**" />
+    <EmbeddedResource Remove="TaskTrackerCLIProject.Tests\**" />
+    <None Remove="TaskTrackerCLIProject.Tests\**" />
+  </ItemGroup>
+
 </Project>
