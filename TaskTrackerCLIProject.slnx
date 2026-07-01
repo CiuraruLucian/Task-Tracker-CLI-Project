@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../TaskTrackerCLIProject.Tests/TaskTrackerCLIProject.Tests.csproj" Id="4a12e386-63b8-42ca-9c6e-015bd2136326" />
   <Project Path="TaskTrackerCLIProject.csproj" />
 </Solution>

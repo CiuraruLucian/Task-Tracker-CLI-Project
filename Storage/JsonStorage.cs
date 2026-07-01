@@ -6,8 +6,15 @@ using System.IO;
 
 namespace TaskTrackerCLIProject.Storage
 {
+    public interface IStorage
+    {
+        List<TaskItem> LoadTasks();
+
+        void SaveTasks(List<TaskItem> tasks);
+    }
+    
     // Handles all reading and writing of tasks to the JSON file on disk
-    public class JsonStorage
+    public class JsonStorage : IStorage
     {
         private readonly string _filepath;
 

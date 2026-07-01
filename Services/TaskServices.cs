@@ -10,10 +10,10 @@ namespace TaskTrackerCLIProject.Services
     // Depends on IStorage for persistence, keeping file system concerns separate
     public class TaskServices
     {
-        private readonly JsonStorage _storage;
+        private readonly IStorage _storage;
 
         // Storage is injected via constructor to allow easy swapping (e.g. for testing)
-        public TaskServices(JsonStorage storage)
+        public TaskServices(IStorage storage)
         {
             _storage = storage;
         }
@@ -104,6 +104,10 @@ namespace TaskTrackerCLIProject.Services
                 _storage.SaveTasks(tasks);
 
                 return updatedTask;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException($"The task with the id: {id} was not found.",ex);
             }
             catch (Exception ex)
             {
