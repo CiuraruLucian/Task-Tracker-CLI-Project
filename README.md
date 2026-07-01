@@ -9,6 +9,7 @@ This project was built as part of my second year studies at Solent University to
 ## Project Repository
 
 GitHub: https://github.com/CiuraruLucian/Task-Tracker-CLI-Project.git
+Project URL: https://roadmap.sh/projects/task-tracker
 
 ---
 
